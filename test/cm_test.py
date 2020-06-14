@@ -12,16 +12,17 @@ class IAppium(unittest.TestCase):
 
     def setUp(self):
         desired_caps = {}
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '9'
-        desired_caps['udid'] = 'emulator-5554'
-        desired_caps['deviceName'] = 'emulator-5554'
-        desired_caps['appPackage'] = 'com.example.android.contactmanager'
-        desired_caps['appActivity'] = '.ContactManager'
-        desired_caps['noReset'] = 'true'
-        desired_caps['app'] = f'{os.path.abspath(os.curdir)}/../app/ContactManager.apk'
+        appium_server_url = config['appium_server_url']
+        desired_caps['platformName'] = config['desired_caps']['platformName']
+        desired_caps['udid'] = config['desired_caps']['udid']
+        desired_caps['deviceName'] = config['desired_caps']['deviceName']
+        desired_caps['appPackage'] = config['desired_caps']['appPackage']
+        desired_caps['appActivity'] = config['desired_caps']['appActivity']
+        desired_caps['automationName'] = config['desired_caps']['automationName']
+        desired_caps['noReset'] = config['desired_caps']['noReset']
+        desired_caps['app'] = f'{os.path.abspath(os.curdir)}/app/ContactManager.apk'
 
-        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        self.driver = webdriver.Remote(appium_server_url, desired_caps)
 
     def tearDown(self):
         self.driver.quit()
@@ -68,7 +69,7 @@ class IAppium(unittest.TestCase):
             print('Click the ok button on confirm dialog')
             elem.click()
         else:
-            print('No confirm dialog fount')
+            print('No confirm dialog found')
 
     def _find_elem_by_xpath(self, elem_xpath, time_out=timeout, raise_exception=True):
         start = time.time()
