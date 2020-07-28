@@ -2,7 +2,7 @@ from appium import webdriver
 import unittest
 import time
 import os
-from testconfig import config
+from pytest_testconfig import config
 
 timeout = 30
 poll = 2
