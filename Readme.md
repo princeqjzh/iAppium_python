@@ -2,7 +2,7 @@
 运行环境：
 - appium server
 - python3
-- unittest, nosetests
+- pytest
 - git
 
 配置文件：iAppium_python.json
@@ -10,4 +10,4 @@
 - 填入设备的 deviceName 与 udid
 
 运行命令：
-nosetests -v test/cm_test.py -s --tc-file /fullpath/iAppium_python.json --tc-format json 
+pytest -v test/cm_test.py --tc-file /full_path/iAppium_python.json --tc-format json
