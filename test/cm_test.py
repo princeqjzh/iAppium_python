@@ -2,12 +2,13 @@ from appium import webdriver
 import unittest
 import time
 import os
+import allure
 from pytest_testconfig import config
 
 timeout = 30
 poll = 2
 
-
+@allure.feature('IAppium')
 class IAppium(unittest.TestCase):
 
     def setUp(self):
@@ -27,6 +28,7 @@ class IAppium(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+    @allure.story('Test Contact')
     def test_contact(self):
         """  """
 
